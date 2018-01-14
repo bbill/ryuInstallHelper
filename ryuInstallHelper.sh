@@ -11,6 +11,11 @@ total_memory=$(free -b | grep 'Mem' | awk '{print $2}')
 minimum_memory=512000
 test $total_memory -lt $minimum_memory && echo "Minimum memory requirement is 512MB" && exit 0
 
+# modify locale environment to fix pip  says sth like "locale.Error: unsupported locale setting".
+
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
 # Get the latest package lists
 sudo apt-get update
 
